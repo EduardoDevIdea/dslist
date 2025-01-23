@@ -17,14 +17,14 @@ public class GameService {
 	@Autowired//Injetando um GameRepository no GameService
 	private GameRepository gameRepository;
 	
-	@Transactional(readOnly = true) //Para garantir os principios ACID. readOnly = true para assegurar que não haverá escrita no banco de dados
+	@Transactional(readOnly = true) //Para garantir os principios ACID. readOnly = true para assegurar que não haverá esc
 	public GameDTO findById(Long id) {
 		Game result = gameRepository.findById(id).get(); //fybndById retorna um Optional. Pra pegar o Game que tá dentro do Optional tem que usar o .get
 		                                                 // Seria bom fazer um tratamento de excessão para caso o Id não exista, mas não foi feito para agilizar tempo de aula
-		 return new GameDTO(result); //convertento o game foi buscado do banco de dados e convertendo em GameDTO e retornando o GameDTO
+		 return new GameDTO(result); //convertendo o game foi buscado do banco de dados e convertendo em GameDTO e retornando o GameDTO
 	}
 	
-	@Transactional(readOnly = true)
+	
 	public List<GameMinDTO> findAll(){
 		List<Game> result = gameRepository.findAll();
 		List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList(); 
